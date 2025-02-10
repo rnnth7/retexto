@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+        <div class="row">
+            <!-- Formulário -->
+            <div class="col-md-6">
+                <div class="card p-4 shadow-sm">
+                    <h2 class="text-center text-palmeiras">Envie a Propositura em PDF</h2>
+                    <form action="{{url_for('index')}}" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <input type="file" name='pdf' class="form-control" id="pdfFile" accept="application/pdf" required>
+                        </div>
+                        <button type="submit" class="btn btn-palmeiras w-100">Gerar texto</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Frase Motivacional -->
+            <div class="col-md-6 d-flex align-items-center">
+                <div class="quote-box">
+                    <p class="quote-text">{{frase}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Espaço para Resposta -->
+        <div class="mt-5 p-4 response-box">
+            {% if resposta == None %}
+            <h4 class="text-center text-palmeiras">Matéria</h4>
+            <p id="responseText" class="text-justify">O texto aparecerá aqui após o envio do PDF.</p>
+            {% else %}
+            {{resposta | safe}}
+            {% endif %}
+        </div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReTexto - V1.2 BETA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/estilo.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{url_for('index')}}">ReTexto V1.2 Beta</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}">Contato</a></li>
+                </ul>
+            </div>
+            <span id="currentDate" class="text-white"></span>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="container py-5">
+{% block conteudo %} {% endblock %}
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="text-center py-3">
+        <p>&copy; 2025 ReTexto - Todos os direitos reservados. By Renato M. Mendes.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/style.js"></script>
+</body>
+</html>
+

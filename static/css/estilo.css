@@ -1,0 +1,77 @@
+/* Verde da Sociedade Esportiva Palmeiras */
+:root {
+    --verde-palmeiras: #006437;
+    --branco: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--verde-palmeiras);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--branco) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--branco);
+}
+
+/* Data na Navbar */
+#currentDate {
+    font-size: 0.9rem;
+}
+
+/* Formulário */
+.card {
+    background-color: var(--branco);
+    border-left: 5px solid var(--verde-palmeiras);
+}
+
+.text-palmeiras {
+    color: var(--verde-palmeiras);
+}
+
+.btn-palmeiras {
+    background-color: var(--verde-palmeiras);
+    color: var(--branco);
+    border: none;
+}
+
+.btn-palmeiras:hover {
+    background-color: #004d2c;
+}
+
+/* Frase Motivacional */
+.quote-box {
+    background-color: var(--verde-palmeiras);
+    color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Espaço de Resposta */
+.response-box {
+    background-color: var(--branco);
+    border-left: 5px solid var(--verde-palmeiras);
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-height: 150px;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--verde-palmeiras);
+    color: var(--branco);
+    margin-top: 20px;
+}
