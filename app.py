@@ -40,7 +40,7 @@ def index():
 
         # Converter PDF
         try:
-            pdf_convertido = convert_from_path(temp_file.name, poppler_path="/usr/bin"g)
+            pdf_convertido = convert_from_path(temp_file.name, poppler_path="/usr/bin")
         except Exception as e:
             return f"Erro ao converter PDF: {e}", 500
 
