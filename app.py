@@ -15,7 +15,7 @@ api = os.getenv('API_KEY')
 genai.configure(api_key=api)
 
 pytesseract.pytesseract.tesseract_cmd = "/app/.apt/usr/bin/tesseract"
-POPPLER_PATH = "/usr/bin"
+POPPLER_PATH = "/app/.apt/usr/bin/"
 
 frase = random.choice(citacoes)
 
