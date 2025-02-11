@@ -50,7 +50,7 @@ def index():
             texto += pytesseract.image_to_string(pagina) + "\n"
 
         # Criar a pergunta para o Gemini
-        pergunta = (f"{prompt} {texto}. Na data de {date.today}")
+        pergunta = (f"{prompt} {texto}. Na data de {date.today()}")
 
         # Gerar resposta com Gemini
         model = genai.GenerativeModel('gemini-2.0-flash')
