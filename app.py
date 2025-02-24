@@ -24,6 +24,9 @@ app = Flask(__name__)
 @app.route('/', methods=["GET", "POST"])
 def index():
     resposta = None
+    tipoSessao = None
+    tipoProjeto = None
+    autores = []
 
     if request.method == "POST":
         if 'pdf' not in request.files:
@@ -32,6 +35,14 @@ def index():
         pdf = request.files['pdf']
         if pdf.filename == "":
             return "Nenhum arquivo enviado", 400
+
+        tipoSessao = request.form.get('tipoSessao')
+        tipoProjeto = request.form.get('tipoProjeto')
+
+        autoria = request.form.getlist('autoria')
+        if autoria == []:
+            return "Autoria não escolhida", 400
+        autores = autoriaFormatada(autoria)
 
         # Criar arquivo temporário
         temp_file = tempfile.NamedTemporaryFile(suffix=".pdf", delete=False)
@@ -50,7 +61,7 @@ def index():
             texto += pytesseract.image_to_string(pagina) + "\n"
 
         # Criar a pergunta para o Gemini
-        pergunta = (f"{prompt} {texto}. Na data de {date.today()}")
+        pergunta = (f"{prompt} a/o {tipoProjeto} foi aprovado(a) na {tipoSessao} de {date.today()}. Os autores foi/foram {autores}. O texto aprovado foi: {texto}.")
 
         # Gerar resposta com Gemini
         model = genai.GenerativeModel('gemini-2.0-flash')

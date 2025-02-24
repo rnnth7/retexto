@@ -1,34 +1,97 @@
 {% extends 'base.html' %}
 {% block conteudo %}
-        <div class="row">
-            <!-- Formulário -->
-            <div class="col-md-6">
-                <div class="card p-4 shadow-sm">
-                    <h2 class="text-center text-palmeiras">Envie a Propositura em PDF</h2>
-                    <form action="{{url_for('index')}}" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <input type="file" name='pdf' class="form-control" id="pdfFile" accept="application/pdf" required>
+    <div class="row">
+        <!-- Formulário -->
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm">
+                <h2 class="text-center text-palmeiras">Envie a Propositura em PDF</h2>
+                <form action="{{ url_for('index') }}" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input type="file" name="pdf" class="form-control" id="pdfFile" accept="application/pdf" required>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" name="tipoSessao" required aria-label="Tipo de Sessão">
+                            <option value="" disabled selected>Tipo de Sessão</option>
+                            <option value="Sessão Ordinária">Sessão Ordinária</option>
+                            <option value="Sessão Solene">Sessão Solene</option>
+                            <option value="Sessão Extraordinária">Sessão Extraordinária</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" name="tipoProjeto" required aria-label="Tipo de Propositura">
+                            <option value="" disabled selected>Tipo de Propositura</option>
+                            <option value="Projeto de Lei Ordinária">Projeto de Lei Ordinária</option>
+                            <option value="Projeto de Lei Complementar">Projeto de Lei Complementar</option>
+                            <option value="Projeto de Emenda à Lei Orgânica">Projeto de Emenda à Lei Orgânica</option>
+                            <option value="Projeto de Resolução">Projeto de Resolução</option>
+                            <option value="Projeto de Decreto Legislativo">Projeto de Decreto Legislativo</option>
+                            <option value="Moção">Moção</option>
+                            <option value="Requerimento">Requerimento</option>
+                            <option value="Indicação">Indicação</option>
+                        </select>
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Autoria do Projeto
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse mb-5" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    {% for autor in [
+                                        ("Prefeitura", "prefeita Mara Bertaiolli (PL)"),
+                                        ("Farofa", "presidente da Câmara, Francimário Vieira Farofa (PL)"),
+                                        ("Clodoaldo de Moraes", "Clodoaldo de Moraes (PL)"),
+                                        ("Edson Santos", "Edson Santos (PSD)"),
+                                        ("Felipe Lintz", "Felipe Lintz (PL)"),
+                                        ("Fernanda Moreno", "Fernanda Moreno (MDB)"),
+                                        ("Iduigues Martins", "Iduigues Martins (PT)"),
+                                        ("Inês Paz", "Inês Paz (PSOL)"),
+                                        ("Johnny da Inclusão", "Johnny da inclusão (Avante)"),
+                                        ("Johnross", "Johnross (PRD)"),
+                                        ("Juliano Botelho", "Juliano Botelho (PSB)"),
+                                        ("Marcos Furlan", "Marcos Furlan (Podemos)"),
+                                        ("Malu Fernandes", "Malu Fernandes (PL)"),
+                                        ("Mauro de Assis Margarido", "Mauro de Assis Margarido (PRD)"),
+                                        ("Mauro Araújo", "Mauro Araújo (MDB)"),
+                                        ("Mauro Yokoyama", "Mauro Yokoyama (PL)"),
+                                        ("Bi Gêmeos", "Bi Gêmeos (PSD)"),
+                                        ("Osvaldo Silva", "Osvaldo Silva (REP)"),
+                                        ("Otto Rezende", "Otto Rezende (PSD)"),
+                                        ("Pedro Komura", "Pedro Komura (União)"),
+                                        ("Priscila Yamagami", "Priscila Yamagami (PP)"),
+                                        ("Rodrigo Romão", "Rodrigo Romão (PCdoB)"),
+                                        ("Vitor Emori", "Vitor Emori (PL)"),
+                                        ("Todos os vereadores", "totalidade dos vereadores")
+                                    ] %}
+                                        <div class="form-check form-check-inline mb-3">
+                                            <input type="checkbox" class="form-check-input mt-3" value="{{ autor[1] }}" name="autoria" id="{{ autor[0]|lower|replace(' ', '_') }}">
+                                            <label for="{{ autor[0]|lower|replace(' ', '_') }}">{{ autor[0] }}</label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-palmeiras w-100">Gerar texto</button>
-                    </form>
-                </div>
-            </div>
-            <!-- Frase Motivacional -->
-            <div class="col-md-6 d-flex align-items-center">
-                <div class="quote-box">
-                    <p class="quote-text">{{frase}}</p>
-                </div>
+                    </div>
+                    <button type="submit" class="btn btn-palmeiras w-100">Gerar texto</button>
+                </form>
             </div>
         </div>
-
-        <!-- Espaço para Resposta -->
-        <div class="mt-5 p-4 response-box">
-            {% if resposta == None %}
+        <!-- Frase Motivacional -->
+        <div class="col-md-6 d-flex align-items-center">
+            <div class="quote-box">
+                <p class="quote-text">{{ frase }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Espaço para Resposta -->
+    <div class="mt-5 p-4 response-box">
+        {% if resposta is none %}
             <h4 class="text-center text-palmeiras">Matéria</h4>
             <p id="responseText" class="text-justify">O texto aparecerá aqui após o envio do PDF.</p>
-            {% else %}
-            {{resposta | safe}}
-            {% endif %}
-        </div>
-
+        {% else %}
+            {{ resposta | safe }}
+        {% endif %}
+    </div>
 {% endblock %}

@@ -106,12 +106,12 @@ citacoes = [
 ]
 
 prompt = '''
-Faça uma matéria jornalística, simples e objetiva, sobre a aprovação da Câmara Municipal de Mogi das Cruzes. 
+Faça uma matéria jornalística, simples e objetiva, sobre a aprovação de Propositura pela Câmara Municipal de Mogi das Cruzes. 
 O texto deve ser formatado em parágrafos e não precisa iniciar com o local e data. No texto deve ter o partido dos
 vereadores após o nome, entre parêteses, na primeira aparição. O texto deve obrigatoriamente ter o número do Requerimento,
 Moção ou Projeto de Lei. Também é importante observar quando a proposta te mais de um autor, para citá-los como autores corretamente.
-Pode variar o estilo e as ordens da estrutura sujeito, verbo e complemento, para deixar o texto mais dinâmico.
+Pode variar o estilo e as ordens da estrutura sujeito, verbo e complemento, para deixar o texto mais dinâmico. É importante sempre variar o estilo do texto de uma geração para outra.
 Também é interessante pegar algum trecho do projeto e colocar como aspas do autor ou dos autores. Mas só colocar como aspass
-parte do texto de forma fidedigna, não inventar nada. O texto deve ser totalmente e fidedignamente baseado nesse documento: 
+parte do texto de forma fidedigna, não inventar nada. O texto deve ser totalmente e fidedignamente baseado nas seguintes informações: 
 
 '''
