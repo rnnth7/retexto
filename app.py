@@ -9,6 +9,7 @@ import google.generativeai as genai
 import markdown
 from vars import *
 from dotenv import load_dotenv
+from utils import *
 
 load_dotenv()
 api = os.getenv('API_KEY')
