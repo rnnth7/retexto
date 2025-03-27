@@ -61,6 +61,11 @@ def index():
         for pagina in pdf_convertido:
             texto += pytesseract.image_to_string(pagina) + "\n"
 
+        if tipoSessao == "Sessão Solene":
+            prompt = promptSolene
+        else:
+            prompt = promptOrdinaria
+
         # Criar a pergunta para o Gemini
         pergunta = (f"{prompt} a/o {tipoProjeto} foi aprovado(a) na {tipoSessao} de {date.today()}. Os autores foi/foram {autores}. O texto aprovado foi: {texto}.")
 
