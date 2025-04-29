@@ -10,6 +10,9 @@ import markdown
 from vars import *
 from dotenv import load_dotenv
 from utils import *
+import tracemalloc
+
+tracemalloc.start()
 
 load_dotenv()
 api = os.getenv('API_KEY')
@@ -86,7 +89,14 @@ def sobre():
 
 @app.route('/contato')
 def contato():
+    snapshot = tracemalloc.take_snapshot()
+    top_stats = snapshot.statistics("filename")
+
+    print("\n[ TOP 10 USO DE MEMÓRIA ]")
+    for stat in top_stats[:10]:
+        print(stat)
     return render_template('contato.html')
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
