@@ -52,7 +52,7 @@ def index():
 
         # Converter PDF
         try:
-            pdf_convertido = convert_from_path(temp_file.name, poppler_path="/usr/bin")
+            pdf_convertido = convert_from_path(temp_file.name, poppler_path="/usr/bin", dpi=100)
         except Exception as e:
             return f"Erro ao converter PDF: {e}", 500
 
@@ -61,6 +61,7 @@ def index():
         for pagina in pdf_convertido:
             texto += pytesseract.image_to_string(pagina) + "\n"
 
+        #Ver se é sessão ordinária ou solene
         if tipoSessao == "Sessão Solene":
             prompt = promptSolene
         else:
