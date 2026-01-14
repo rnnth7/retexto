@@ -4,6 +4,7 @@ import pytesseract
 from pdf2image import convert_from_path
 import tempfile
 import os
+import shutil
 from datetime import date
 import google.generativeai as genai
 import markdown
@@ -12,13 +13,21 @@ from dotenv import load_dotenv
 from utils import *
 import tracemalloc
 
+
 tracemalloc.start()
 
 load_dotenv()
 api = os.getenv('API_KEY')
 genai.configure(api_key=api)
 
-pytesseract.pytesseract.tesseract_cmd = "/app/.apt/usr/bin/tesseract"
+# Verifica se está no Heroku ou local
+if os.path.exists('/app/.apt/usr/bin/tesseract'):
+    # Caminho do Heroku
+    pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+else:
+    # Caminho local (Linux/Windows)
+    pytesseract.pytesseract.tesseract_cmd = shutil.which('tesseract')
+
 POPPLER_PATH = "/app/.apt/usr/bin/"
 
 frase = random.choice(citacoes)
